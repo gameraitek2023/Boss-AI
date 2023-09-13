@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>983782648519-rn3tgtp4jl9qt80glo8net1jlm86h4p7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.983782648519-rn3tgtp4jl9qt80glo8net1jlm86h4p7</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>983782648519-80f29h8cpp496n0b8gahvc8sb0itc7vj.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCl6FoW7ojZU4Ozcc8vSMnSlNTLirTrk34</string>
+	<key>GCM_SENDER_ID</key>
+	<string>983782648519</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.bossapplication.ai</string>
+	<key>PROJECT_ID</key>
+	<string>gigz-2023</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gigz-2023.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:983782648519:ios:7f32bf3b212af910b8ece2</string>
+	<key>DATABASE_URL</key>
+	<string>https://gigz-2023-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
