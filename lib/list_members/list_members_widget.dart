@@ -67,8 +67,11 @@ class _ListMembersWidgetState extends State<ListMembersWidget> {
             title: Text(
               'All Affiliates',
               style: FlutterFlowTheme.of(context).headlineSmall.override(
-                    fontFamily: 'Poppins',
+                    fontFamily:
+                        FlutterFlowTheme.of(context).headlineSmallFamily,
                     fontWeight: FontWeight.normal,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).headlineSmallFamily),
                   ),
             ),
             actions: [],
@@ -245,9 +248,15 @@ class _ListMembersWidgetState extends State<ListMembersWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .labelSmall
                                           .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelSmallFamily,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmallFamily),
                                           ),
                                     ),
                                   ),
@@ -368,6 +377,10 @@ class _ListMembersWidgetState extends State<ListMembersWidget> {
                                         color: Colors.white,
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.normal,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
                                       ),
                                   elevation: 2.0,
                                   borderSide: BorderSide(

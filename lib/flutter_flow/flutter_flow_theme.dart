@@ -8,7 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 const kThemeModeKey = '__theme_mode__';
 SharedPreferences? _prefs;
 
+enum DeviceSize {
+  mobile,
+  tablet,
+  desktop,
+}
+
 abstract class FlutterFlowTheme {
+  static DeviceSize deviceSize = DeviceSize.mobile;
+
   static Future initialize() async =>
       _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
@@ -25,6 +33,7 @@ abstract class FlutterFlowTheme {
       : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
   static FlutterFlowTheme of(BuildContext context) {
+    deviceSize = getDeviceSize(context);
     return Theme.of(context).brightness == Brightness.dark
         ? DarkModeTheme()
         : LightModeTheme();
@@ -117,7 +126,22 @@ abstract class FlutterFlowTheme {
   String get bodySmallFamily => typography.bodySmallFamily;
   TextStyle get bodySmall => typography.bodySmall;
 
-  Typography get typography => ThemeTypography(this);
+  Typography get typography => {
+        DeviceSize.mobile: MobileTypography(this),
+        DeviceSize.tablet: TabletTypography(this),
+        DeviceSize.desktop: DesktopTypography(this),
+      }[deviceSize]!;
+}
+
+DeviceSize getDeviceSize(BuildContext context) {
+  final width = MediaQuery.sizeOf(context).width;
+  if (width < 479) {
+    return DeviceSize.mobile;
+  } else if (width < 991) {
+    return DeviceSize.tablet;
+  } else {
+    return DeviceSize.desktop;
+  }
 }
 
 class LightModeTheme extends FlutterFlowTheme {
@@ -182,112 +206,336 @@ abstract class Typography {
   TextStyle get bodySmall;
 }
 
-class ThemeTypography extends Typography {
-  ThemeTypography(this.theme);
+class MobileTypography extends Typography {
+  MobileTypography(this.theme);
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Poppins';
+  String get displayLargeFamily => 'Lato';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 57.0,
       );
-  String get displayMediumFamily => 'Poppins';
+  String get displayMediumFamily => 'Lato';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 45.0,
       );
-  String get displaySmallFamily => 'Poppins';
+  String get displaySmallFamily => 'Lato';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get headlineLargeFamily => 'Poppins';
+  String get headlineLargeFamily => 'Lato';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Poppins';
+  String get headlineMediumFamily => 'Lato';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get headlineSmallFamily => 'Poppins';
+  String get headlineSmallFamily => 'Lato';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'Poppins';
+  String get titleLargeFamily => 'Lato';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Poppins';
+  String get titleMediumFamily => 'Lato';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Poppins';
+  String get titleSmallFamily => 'Lato';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Poppins';
+  String get labelLargeFamily => 'Lato';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelMediumFamily => 'Poppins';
+  String get labelMediumFamily => 'Lato';
   TextStyle get labelMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
-  String get labelSmallFamily => 'Poppins';
+  String get labelSmallFamily => 'Lato';
   TextStyle get labelSmall => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => 'Poppins';
+  String get bodyLargeFamily => 'Lato';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Poppins';
+  String get bodyMediumFamily => 'Lato';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Poppins';
+  String get bodySmallFamily => 'Lato';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Poppins',
+        'Lato',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+}
+
+class TabletTypography extends Typography {
+  TabletTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get displayLargeFamily => 'Lato';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Lato';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Lato';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 24.0,
+      );
+  String get headlineLargeFamily => 'Lato';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Lato';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 22.0,
+      );
+  String get headlineSmallFamily => 'Lato';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
+      );
+  String get titleLargeFamily => 'Lato';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Lato';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get titleSmallFamily => 'Lato';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.0,
+      );
+  String get labelLargeFamily => 'Lato';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get labelMediumFamily => 'Lato';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get labelSmallFamily => 'Lato';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 11.0,
+      );
+  String get bodyLargeFamily => 'Lato';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
+      );
+  String get bodyMediumFamily => 'Lato';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Lato';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+}
+
+class DesktopTypography extends Typography {
+  DesktopTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get displayLargeFamily => 'Lato';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Lato';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Lato';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 24.0,
+      );
+  String get headlineLargeFamily => 'Lato';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Lato';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 22.0,
+      );
+  String get headlineSmallFamily => 'Lato';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
+      );
+  String get titleLargeFamily => 'Lato';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Lato';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get titleSmallFamily => 'Lato';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.0,
+      );
+  String get labelLargeFamily => 'Lato';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get labelMediumFamily => 'Lato';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get labelSmallFamily => 'Lato';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 11.0,
+      );
+  String get bodyLargeFamily => 'Lato';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
+      );
+  String get bodyMediumFamily => 'Lato';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Lato',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Lato';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Lato',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,

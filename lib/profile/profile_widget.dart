@@ -48,8 +48,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           title: Text(
             'My Profile',
             style: FlutterFlowTheme.of(context).displaySmall.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: FlutterFlowTheme.of(context).displaySmallFamily,
                   color: FlutterFlowTheme.of(context).primaryText,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).displaySmallFamily),
                 ),
           ),
           actions: [
@@ -513,9 +515,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
                                     ),
                               ),
                             ),
