@@ -387,43 +387,47 @@ class _DetailsAppWidgetState extends State<DetailsAppWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FFButtonWidget(
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'Webview',
-                                  queryParameters: {
-                                    'applink': serializeParam(
-                                      widget.appdetails?.appUrl,
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              },
-                              text: 'Go to App',
-                              icon: Icon(
-                                Icons.android_sharp,
-                                size: 15.0,
-                              ),
-                              options: FFButtonOptions(
-                                width: 356.0,
-                                height: 48.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'Webview',
+                                    queryParameters: {
+                                      'applink': serializeParam(
+                                        widget.appdetails?.appUrl,
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                text: 'Go to App',
+                                icon: Icon(
+                                  Icons.android_sharp,
+                                  size: 15.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                options: FFButtonOptions(
+                                  width: 307.0,
+                                  height: 48.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.white,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
                             ),
                           ],

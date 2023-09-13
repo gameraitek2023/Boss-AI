@@ -179,7 +179,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          'Free Apps',
+                                          'AI-Models',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -276,8 +276,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   24.0, 8.0, 24.0, 0.0),
                               child: FutureBuilder<List<MobileAppRow>>(
                                 future: MobileAppTable().queryRows(
-                                  queryFn: (q) => q,
-                                  limit: 6,
+                                  queryFn: (q) => q.eq(
+                                    'category',
+                                    'AI-app',
+                                  ),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -474,180 +476,212 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 6.0, 24.0, 6.0),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 4.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      child: Container(
-                                        width: 585.0,
-                                        height: 80.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'DetailsApp',
+                                          queryParameters: {
+                                            'appdetails': serializeParam(
+                                              columnMobileAppRow,
+                                              ParamType.SupabaseRow,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      },
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 4.0,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 16.0, 0.0, 16.0),
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  18.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(6.0),
-                                                        child: Image.network(
-                                                          columnMobileAppRow
-                                                              .logo!,
-                                                          width: 52.0,
-                                                          height: 52.0,
-                                                          fit: BoxFit.cover,
+                                        child: Container(
+                                          width: 585.0,
+                                          height: 80.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 16.0, 0.0, 16.0),
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    18.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      6.0),
+                                                          child: Image.network(
+                                                            columnMobileAppRow
+                                                                .logo!,
+                                                            width: 52.0,
+                                                            height: 52.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      24.0,
-                                                                      0.0,
-                                                                      12.0,
-                                                                      6.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            6.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        12.0,
+                                                                        6.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          6.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    columnMobileAppRow
+                                                                        .appName!,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          fontWeight:
+                                                                              FontWeight.normal,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                                Text(
                                                                   columnMobileAppRow
-                                                                      .appName!,
+                                                                      .installations!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
                                                                             'Poppins',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiary,
                                                                         fontSize:
-                                                                            14.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
+                                                                            12.0,
                                                                       ),
                                                                 ),
-                                                              ),
-                                                              Text(
-                                                                columnMobileAppRow
-                                                                    .installations!,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                      fontSize:
-                                                                          12.0,
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Container(
+                                                    width: 147.0,
+                                                    height: 100.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  24.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'DetailsApp',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'appdetails':
+                                                                        serializeParam(
+                                                                      columnMobileAppRow,
+                                                                      ParamType
+                                                                          .SupabaseRow,
                                                                     ),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Icon(
+                                                                Icons
+                                                                    .arrow_forward_ios_rounded,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
+                                                                size: 24.0,
                                                               ),
-                                                            ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                Container(
-                                                  width: 147.0,
-                                                  height: 100.0,
-                                                  decoration: BoxDecoration(),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                24.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.end,
-                                                      children: [
-                                                        InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            context.pushNamed(
-                                                              'DetailsApp',
-                                                              queryParameters: {
-                                                                'appdetails':
-                                                                    serializeParam(
-                                                                  columnMobileAppRow,
-                                                                  ParamType
-                                                                      .SupabaseRow,
-                                                                ),
-                                                              }.withoutNulls,
-                                                            );
-                                                          },
-                                                          child: Icon(
-                                                            Icons
-                                                                .arrow_forward_ios_rounded,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .tertiary,
-                                                            size: 24.0,
-                                                          ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),

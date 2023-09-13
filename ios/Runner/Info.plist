@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Boss-AI</string>
+	<string>AI-Connect</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Boss-AI</string>
+	<string>AI-Connect</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -22,25 +22,14 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
-	<array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.983782648519-rn3tgtp4jl9qt80glo8net1jlm86h4p7</string>
-                
-            </array>
-        </dict>
-
-        <dict>
+	<array>        <dict>
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>bossai.com</string>
+        <string>aiconnect.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>bossai</string>
+        <string>aiconnect</string>
         </array>
         </dict>
     </array>

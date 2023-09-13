@@ -350,7 +350,7 @@ class _ListMembersWidgetState extends State<ListMembersWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('DetailsApp');
+                                  context.pushNamed('ProfileDetails');
                                 },
                                 text: 'View',
                                 options: FFButtonOptions(

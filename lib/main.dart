@@ -3,12 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'auth/firebase_auth/firebase_user_provider.dart';
-import 'auth/firebase_auth/auth_util.dart';
-
 import '/backend/supabase/supabase.dart';
-import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
@@ -18,7 +13,6 @@ import 'index.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
-  await initFirebase();
 
   await SupaFlow.initialize();
 
@@ -40,12 +34,10 @@ class _MyAppState extends State<MyApp> {
   Locale? _locale;
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
-  late Stream<BaseAuthUser> userStream;
-
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
 
-  final authUserSub = authenticatedUserStream.listen((_) {});
+  bool displaySplashImage = true;
 
   @override
   void initState() {
@@ -53,20 +45,9 @@ class _MyAppState extends State<MyApp> {
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
-    userStream = bossAIFirebaseUserStream()
-      ..listen((user) => _appStateNotifier.update(user));
-    jwtTokenStream.listen((_) {});
-    Future.delayed(
-      Duration(milliseconds: isWeb ? 0 : 3000),
-      () => _appStateNotifier.stopShowingSplashImage(),
-    );
-  }
 
-  @override
-  void dispose() {
-    authUserSub.cancel();
-
-    super.dispose();
+    Future.delayed(Duration(milliseconds: 3000),
+        () => setState(() => _appStateNotifier.stopShowingSplashImage()));
   }
 
   void setLocale(String language) {
@@ -81,7 +62,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Boss-AI',
+      title: 'AI-Connect',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,

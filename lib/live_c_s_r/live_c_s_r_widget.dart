@@ -91,11 +91,13 @@ class _LiveCSRWidgetState extends State<LiveCSRWidget> {
                     Container(
                       width: double.infinity,
                       height: MediaQuery.sizeOf(context).height,
-                      decoration: BoxDecoration(),
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                      ),
                       child: FlutterFlowWebView(
                         content: 'https://personalchat.online/kiara/',
                         bypass: false,
-                        height: 700.0,
+                        height: 808.0,
                         verticalScroll: false,
                         horizontalScroll: false,
                       ),

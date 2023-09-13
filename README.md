@@ -1,4 +1,4 @@
-# Boss-AI
+# AI-Connect
 
 A new Flutter project.
 

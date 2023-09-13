@@ -5,7 +5,7 @@
 
 
     <application
-        android:label="Boss-AI"
+        android:label="AI-Connect"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
@@ -45,7 +45,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="bossai" android:host="bossai.com" />
+                <data android:scheme="aiconnect" android:host="aiconnect.com" />
             </intent-filter>
 
         </activity>
